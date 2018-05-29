@@ -45,7 +45,7 @@ int main(void) {
 
 void init_button(void)
 {
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE); /* GPIOA */
 
     GPIO_InitTypeDef gpio_struct;
     gpio_struct.GPIO_Pin = BUTTON;
@@ -53,7 +53,7 @@ void init_button(void)
     gpio_struct.GPIO_OType = GPIO_OType_PP;
     gpio_struct.GPIO_Speed = GPIO_Speed_100MHz;
     gpio_struct.GPIO_PuPd = GPIO_PuPd_UP;
-    GPIO_Init(GPIOE, &gpio_struct);
+    GPIO_Init(GPIOE, &gpio_struct); /* GPIOA */
 
     SysTick_Config(SystemCoreClock / 1000);
 }
@@ -110,7 +110,7 @@ void init_NVIC(void)
 void init_EXTI(void)
 {
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOE, EXTI_PinSource0);
+    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOE, EXTI_PinSource0); /* GPIOA */
     
     EXTI_InitTypeDef exti_struct;
     exti_struct.EXTI_Line = EXTI_Line0;
